@@ -1,0 +1,2 @@
+At first the loop goes through the array and move all non zero elements to the forward using an variable index initialised by 0, as the non zero elements appeard it pushes the non zero element at index "index" and then increment the "index".
+after all  the non zero elements comes forward then the second loop runs from index "index" till the length of the array and pushes 0 at each index.
