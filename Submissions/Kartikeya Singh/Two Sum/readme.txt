@@ -1,0 +1,2 @@
+This takes the target and then start the first loop which goes till the n(lenght of array) and then a nested loop that starts with "i+1" and goes till the end of the array and at each itteration it compares the (i+j) value to the targetted value.
+If found such pairs then return the value of i,j else returns the -1,-1 for indexes.
