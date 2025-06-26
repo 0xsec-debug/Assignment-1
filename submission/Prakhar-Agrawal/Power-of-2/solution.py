@@ -1,4 +1,4 @@
-class solution:
+class Solution:
   def isPowerof2(self, n: int) -> bool:
     if n <=0:
       return False
