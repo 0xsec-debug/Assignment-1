@@ -1,0 +1,64 @@
+#include <stdlib.h>
+
+#define SIZE 10007
+
+typedef struct Node {
+    int key;
+    int index;
+    struct Node* next;
+} Node;
+
+Node* table[SIZE];
+
+int hash(int key) {
+    return ((long long)key + 1000000000LL) % SIZE;
+}
+
+void insert(int key, int index) {
+    int h = hash(key);
+    Node* node = malloc(sizeof(Node));
+    node->key = key;
+    node->index = index;
+    node->next = table[h];
+    table[h] = node;
+}
+
+int find(int key) {
+    int h = hash(key);
+    Node* curr = table[h];
+    while (curr) {
+        if (curr->key == key) return curr->index;
+        curr = curr->next;
+    }
+    return -1;
+}
+
+void clear() {
+    for (int i = 0; i < SIZE; i++) {
+        Node* curr = table[i];
+        while (curr) {
+            Node* temp = curr;
+            curr = curr->next;
+            free(temp);
+        }
+        table[i] = NULL;
+    }
+}
+
+int* twoSum(int* nums, int n, int target, int* returnSize) {
+    *returnSize = 2;
+    int* res = malloc(2 * sizeof(int));
+    for (int i = 0; i < n; i++) {
+        int x = target - nums[i];
+        int j = find(x);
+        if (j != -1) {
+            res[0] = j;
+            res[1] = i;
+            clear();
+            return res;
+        }
+        insert(nums[i], i);
+    }
+    clear();
+    return NULL;
+}
